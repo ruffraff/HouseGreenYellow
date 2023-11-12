@@ -1,0 +1,204 @@
+main {
+    margin-bottom: 20px; /* adjust as needed */
+}
+/* Stile generale */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand, .nav-link {
+    color: #4d80c8 !important; /* Colore blu scuro di Booking */
+}
+
+.navbar-light .navbar-toggler-icon {
+    background-color: #4d80c8; /* Colore blu scuro di Booking */
+}
+
+.nav-item.active .nav-link {
+    color: #fa9917 !important; /* Colore arancione di Booking */
+}
+
+/* Dropdown */
+.nav-item.dropdown .dropdown-toggle {
+    color: #4d80c8 !important;
+}
+
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    color: #333;
+}
+
+.dropdown-item:hover {
+    background-color: #f7f7f7;
+    color: #003580;
+}
+
+/* Pulsante di logout */
+.dropdown-item[href="{{ route('logout') }}"]:hover {
+    color: #fa9917;
+}
+
+/* Pulsante di lingua */
+.navbar-nav.ml-auto .nav-link.dropdown-toggle {
+    color: #fff;
+    background-color: #003580;
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+
+.navbar-nav.ml-auto .nav-link.dropdown-toggle:hover {
+    background-color: #002855;
+}
+
+.navbar-nav.ml-auto .dropdown-menu {
+    min-width: 150px;
+    text-align: center;
+}
+ 
+  
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+table, th, td {
+    border: 1px solid #003580;
+}
+
+th, td {
+    padding: 10px 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #003580;  
+    color: #ffffff;
+    font-weight: bold;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f7f7f7;
+}
+
+tbody tr:hover {
+    background-color: #e0e0e0;
+}
+
+ 
+table a {
+    color: #003580;
+    text-decoration: none;
+}
+
+table a:hover {
+    text-decoration: underline;
+    color: #fa9917;  
+} 
+
+ 
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Arial', sans-serif;
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #003580;  
+}
+
+h2 {
+    font-size: 2em;
+    color: #003580;
+    border-bottom: 2px solid #fa9917;  
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.75em;
+    color: #003580;
+}
+
+h4 {
+    font-size: 1.5em;
+    color: #003580;
+}
+
+h5 {
+    font-size: 1.25em;
+    color: #003580;
+}
+
+h6 {
+    font-size: 1em;
+    color: #003580;
+}
+
+ 
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    color: #003580;
+    text-decoration: none;
+}
+
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
+    text-decoration: underline;
+    color: #fa9917;  
+}  
+
+.thead-dark th {
+    color: #fff;
+    background-color: #003580; /* Blu scuro di Booking */
+    border-color: #fa9917; /* Arancione di Booking */
+}
+
+
+/* Stilizzazione base dei pulsanti */
+.btn {
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-2px); /* Effetto di "sollevamento" al passaggio del mouse */
+}
+
+.btn-sm {
+    padding: 5px 10px; /* Riduci leggermente il padding per pulsanti più piccoli */
+    font-size: 0.875rem; /* Riduci la dimensione del carattere */
+}
+
+/* Stilizzazione per pulsanti con classe .btn-info */
+.btn-info {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+}
+
+.btn-info:hover {
+    background-color: #0056b3; /* Sfumatura più scura al passaggio del mouse */
+}
+
+/* Stilizzazione per pulsanti con classe .btn-warning */
+.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800; /* Sfumatura più scura al passaggio del mouse */
+}
