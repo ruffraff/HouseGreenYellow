@@ -62,4 +62,9 @@ return [
     'contact_us' => 'Kontaktieren Sie uns',
     'read_reviews' => 'Bewertungen lesen',
     'language' => 'Sprache',
+    'confirmation_title' => 'Ihre Buchungsbestätigung',
+    'greeting' => 'Hallo ',
+    'details_intro' => 'Ihre Buchung wurde bestätigt. Hier sind die Details:',
+    'property_name' => 'Name des Ferienhauses',
+    'thank_you' => 'Vielen Dank für Ihre Buchung!',
 ];

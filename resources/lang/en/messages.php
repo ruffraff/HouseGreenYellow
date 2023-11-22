@@ -62,4 +62,9 @@ return [
     'contact_us' => 'Contact Us',
     'read_reviews' => 'Read Reviews',
     'language' => 'Language',
+    'confirmation_title' => 'Your Booking Confirmation',
+    'greeting' => 'Hello ',
+    'details_intro' => 'Your booking has been confirmed. Here are the details:',
+    'property_name' => 'Vacation Home Name',
+    'thank_you' => 'Thank you for your booking!',
 ];

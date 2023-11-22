@@ -6,6 +6,9 @@ use App\Models\Booking;
 use App\Models\House;
 use Illuminate\Http\Request;
 use App\Services\BookingService;
+use App\Mail\BookingConfirmation;
+use App\Mail\NewBookingNotification;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
@@ -19,7 +22,20 @@ class BookingController extends Controller
 
     public function index()
     {
-        $bookings = Booking::with(['user', 'house'])->get();
+        $user = auth()->user();
+
+        if ($user instanceof \App\Models\User && $user->hasRole('owner')) {
+            // Logica per l'admin
+            $bookings = Booking::with(['user', 'house'])->get();
+            return view('bookings.index', compact('bookings'));
+        }
+        
+        $userId = auth()->id(); // Ottiene l'ID dell'utente autenticato
+        $bookings = Booking::with(['user', 'house'])
+                            ->where('user_id', $userId)
+                            ->get();  
+          
+       
         return view('bookings.index', compact('bookings'));
     }
 
@@ -44,7 +60,8 @@ class BookingController extends Controller
             return back()->withErrors(['date' => 'Le date di prenotazione si sovrappongono con una prenotazione esistente.']);
         }
 
-        Booking::create($validatedData);
+        $booking = Booking::create($validatedData);
+        $this->sendEmails($booking);
         return redirect()->route('bookings.index');
     }
 
@@ -78,6 +95,12 @@ class BookingController extends Controller
     {
         $booking->delete();
         return redirect()->route('bookings.index');
+    }
+
+    public function sendEmails(Booking $booking)
+    {
+        Mail::to($booking->user->email)->send(new BookingConfirmation($booking));
+        Mail::to($booking->house->owner->email)->send(new BookingConfirmation($booking));
     }
 }
 

@@ -62,4 +62,10 @@ return [
     'contact_us' => 'Contactez-nous',
     'read_reviews' => 'Lire les critiques',
     'language' => 'Langue',
+    'confirmation_title' => 'Confirmation de Votre Réservation',
+    'greeting' => 'Bonjour ',
+    'details_intro' => 'Votre réservation a été confirmée. Voici les détails:',
+    'property_name' => 'Nom de la Maison de Vacances',
+    'thank_you' => 'Merci pour votre réservation !',
+    // Autres chaînes...
 ];
