@@ -1,40 +1,49 @@
 FROM ubuntu:latest
 
-# Imposta l'ambiente come non interattivo
+# Set the environment as non-interactive
 ENV DEBIAN_FRONTEND noninteractive
 
-# Installa Apache, PHP 8.0, git e altri strumenti necessari
+# Update and install Apache, PHP 8.0, git, and other necessary tools
 RUN apt-get update && \
-    apt-get install -y apache2 software-properties-common git && \
+    apt-get install -y software-properties-common && \
     add-apt-repository ppa:ondrej/php && \
     apt-get update && \
-    apt-get install -y php8.0 libapache2-mod-php8.0 php8.0-xml php8.0-mbstring php8.0-zip curl
+    apt-get install -y apache2 \
+                       git \
+                       php8.0 \
+                       libapache2-mod-php8.0 \
+                       php8.0-xml \
+                       php8.0-mbstring \
+                       php8.0-zip \
+                       php8.0-curl \
+                       curl
 
-# Installa Composer
+# Install Composer globally
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Clona il progetto Laravel da GitHub
+# Clone the Laravel project from GitHub
 RUN git clone https://github.com/ruffraff/HouseGreenYellow.git /var/www/html/house-green-yellow
 
-# Imposta la directory di lavoro
+# Set the working directory
 WORKDIR /var/www/html/house-green-yellow
 
-# Installa le dipendenze di Laravel
-RUN composer install
+# Install Laravel dependencies
+# Use the --no-scripts flag to prevent the execution of scripts defined in composer.json
+RUN composer install --no-scripts
 
-# Assegna il proprietario alla directory del progetto
+# Set the correct permissions for the Laravel project
 RUN chown -R www-data:www-data /var/www/html/house-green-yellow
 
-# Abilita PHP in Apache e mod_rewrite
+# Enable PHP in Apache and mod_rewrite
 RUN a2enmod php8.0 rewrite
 
-# Imposta il document root di Apache alla cartella public di Laravel
+# Set the Apache document root to the Laravel public folder
 ENV APACHE_DOCUMENT_ROOT /var/www/html/house-green-yellow/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# Esporre la porta 80
+# Expose port 80
 EXPOSE 80
 
-# Avvia Apache in modalità foreground
+# Start Apache in foreground mode
 CMD ["apache2ctl", "-D", "FOREGROUND"]
