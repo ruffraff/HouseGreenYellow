@@ -62,4 +62,9 @@ return [
     'contact_us' => 'Contattaci',
     'read_reviews' => 'Leggi le recensioni',
     'language' => 'Lingua',
+    'confirmation_title' => 'Conferma della Tua Prenotazione',
+    'greeting' => 'Ciao ',
+    'details_intro' => 'La tua prenotazione è stata confermata. Ecco i dettagli:',
+    'property_name' => 'Nome Casa Vacanze',
+    'thank_you' => 'Grazie per la tua prenotazione!',
 ];

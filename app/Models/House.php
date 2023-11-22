@@ -26,5 +26,15 @@ class House extends Model
     {
         return $this->hasMany('App\Models\Booking');
     }
+
+     /**
+     * Ottiene il proprietario della casa vacanze.
+     */
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner_id');
+    }
+
+    
     use HasFactory;
 }
