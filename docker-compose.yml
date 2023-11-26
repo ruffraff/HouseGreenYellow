@@ -15,4 +15,4 @@ services:
       MYSQL_USER: rruffolo
       MYSQL_PASSWORD: Occihc72?
     ports:
-      - "3306:3306"
+      - "3307:3306"
