@@ -42,8 +42,9 @@ class NewBookingNotification extends Mailable
      */
     public function content()
     {
-        return new Content(
-            view: 'view.name',
+         
+        return new Content( 
+            'emails.newbookingNotification', null , null , null,['bookingDetails' => 'bookingDetails'],null
         );
     }
 
@@ -55,5 +56,13 @@ class NewBookingNotification extends Mailable
     public function attachments()
     {
         return [];
+    }
+
+    public function build()
+    {
+        return $this->view('emails.bookingConfirmation')
+                    ->with([
+                        'bookingDetails' => 'bookingDetails'
+                    ]);
     }
 }
