@@ -1,0 +1,945 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Contact API",
+        "description": "API for managing contact information",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/bookings": {
+            "get": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Get all bookings",
+                "description": "Retrieve a list of all bookings including related user and house information",
+                "operationId": "bb37fd634458adcdfa8e78a0f125c86b",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Booking"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Create a new booking",
+                "description": "Create a new booking with provided data",
+                "operationId": "2cb4d46c4071e111a1fad794cea92b2c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Booking"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Booking created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Booking"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input data"
+                    }
+                }
+            }
+        },
+        "/api/bookings/{id}": {
+            "get": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Get a specific booking",
+                "description": "Retrieve details of a specific booking by ID",
+                "operationId": "dd5eb0c8439d2e49a5a695fe11fd40e3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Booking ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Booking"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Booking not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Update a booking",
+                "description": "Update the details of an existing booking",
+                "operationId": "1e6d47d750fc857da9b6aa9bf2b4b0d4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Booking ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Booking"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Booking updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Booking"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input data"
+                    },
+                    "404": {
+                        "description": "Booking not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Bookings"
+                ],
+                "summary": "Delete a booking",
+                "description": "Delete a specific booking by ID",
+                "operationId": "bf9393534baf179f6f231712b05d7478",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Booking ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Booking deleted successfully"
+                    },
+                    "404": {
+                        "description": "Booking not found"
+                    }
+                }
+            }
+        },
+        "/api/contacts": {
+            "get": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Get list of contacts",
+                "operationId": "getContactsList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Contact"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Add a new contact",
+                "operationId": "addContact",
+                "requestBody": {
+                    "description": "Contact object that needs to be added to the store",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Contact"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Contact created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Contact"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/contacts/{id}": {
+            "get": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Get contact information by ID",
+                "operationId": "getContactById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Contact id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Contact"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Contact not found"
+                    }
+                }
+            }
+        },
+        "/api/contacts/store": {
+            "post": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Store a newly created contact in storage",
+                "operationId": "storeContact",
+                "requestBody": {
+                    "description": "Contact object to be stored",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Contact"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Contact"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/houses": {
+            "get": {
+                "tags": [
+                    "Houses"
+                ],
+                "summary": "List all houses",
+                "description": "Returns a list of all houses along with their photos",
+                "operationId": "b42f34e4d570f84e336f052485598193",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/House"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Houses"
+                ],
+                "summary": "Create a new house",
+                "description": "Creates a new house with the given details",
+                "operationId": "6b8f43075709e0401ea05c9ad994a640",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/House"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "House created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/House"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/houses/{id}": {
+            "get": {
+                "tags": [
+                    "Houses"
+                ],
+                "summary": "Get a specific house",
+                "description": "Retrieve details of a specific house by ID",
+                "operationId": "ccfe8dbd18722212e97e56f308d5d0e4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the house",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/House"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Houses"
+                ],
+                "summary": "Update a house",
+                "description": "Updates the details of an existing house",
+                "operationId": "4847f917cbb71b7f0c23588393191653",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the house to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/House"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "House updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/House"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Houses"
+                ],
+                "summary": "Delete a house",
+                "description": "Deletes a specific house by ID",
+                "operationId": "b879d80166005b73caa78ba4638e4950",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the house to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "House deleted successfully"
+                    }
+                }
+            }
+        },
+        "/houses/{id}/photos": {
+            "get": {
+                "tags": [
+                    "Houses"
+                ],
+                "summary": "Get photos of a house",
+                "description": "Retrieve all photos of a specific house by ID",
+                "operationId": "c55724c09c6605a3f5209b608c1a9c96",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the house",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/HousePhoto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/housePhotos": {
+            "get": {
+                "tags": [
+                    "HousePhotos"
+                ],
+                "summary": "List all house photos",
+                "description": "Returns a list of all house photos",
+                "operationId": "bd22adc535dc3a5b9f15620af4b1c7ca",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/HousePhoto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "HousePhotos"
+                ],
+                "summary": "Create a new house photo",
+                "description": "Creates a new house photo and returns it",
+                "operationId": "a778fb97a62f4af9be0c23c6b8d3acd2",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HousePhoto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "House photo created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HousePhoto"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/housePhotos/{id}": {
+            "get": {
+                "tags": [
+                    "HousePhotos"
+                ],
+                "summary": "Get a specific house photo",
+                "description": "Retrieve details of a specific house photo by ID",
+                "operationId": "7ec3878a3c2de77e208fad9e3a438d13",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the house photo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HousePhoto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "HousePhotos"
+                ],
+                "summary": "Update a house photo",
+                "description": "Updates and returns the specified house photo",
+                "operationId": "bd9117506d13deabaede5381ca4fcb5e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the house photo to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HousePhoto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "House photo updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HousePhoto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "HousePhotos"
+                ],
+                "summary": "Delete a house photo",
+                "description": "Deletes a specific house photo by ID",
+                "operationId": "8d0ddd33eb986631840e1b8e800f34d0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the house photo to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "House photo deleted successfully"
+                    }
+                }
+            }
+        },
+        "/houses/{houseId}/photos": {
+            "get": {
+                "tags": [
+                    "HousePhotos"
+                ],
+                "summary": "Get photos of a specific house",
+                "description": "Retrieve all photos of a specific house by house ID",
+                "operationId": "f29312d89620ee8f27f681bf1ec93655",
+                "parameters": [
+                    {
+                        "name": "houseId",
+                        "in": "path",
+                        "description": "ID of the house",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/HousePhoto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Booking": {
+                "title": "Booking",
+                "required": [
+                    "house_id",
+                    "user_id",
+                    "start_date",
+                    "end_date"
+                ],
+                "properties": {
+                    "house_id": {
+                        "description": "Unique identifier of the house",
+                        "type": "integer"
+                    },
+                    "user_id": {
+                        "description": "Unique identifier of the user",
+                        "type": "integer"
+                    },
+                    "start_date": {
+                        "description": "Start date of the booking",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "end_date": {
+                        "description": "End date of the booking",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "house": {
+                        "$ref": "#/components/schemas/House"
+                    }
+                },
+                "type": "object"
+            },
+            "Contact": {
+                "title": "Contact",
+                "description": "Schema for a Contact object",
+                "properties": {
+                    "id": {
+                        "description": "Unique identifier of the contact",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Name of the contact",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Email address of the contact",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "phone": {
+                        "description": "Phone number of the contact",
+                        "type": "string"
+                    },
+                    "address": {
+                        "description": "Physical address of the contact",
+                        "type": "string"
+                    },
+                    "message": {
+                        "description": "Contact message",
+                        "type": "string"
+                    },
+                    "latitude": {
+                        "description": "Latitude for the contact's location",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "longitude": {
+                        "description": "Longitude for the contact's location",
+                        "type": "number",
+                        "format": "float"
+                    }
+                },
+                "type": "object"
+            },
+            "House": {
+                "title": "House",
+                "description": "House model for handling vacation houses in the system",
+                "properties": {
+                    "id": {
+                        "description": "Unique identifier of the house",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Name of the house",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Description of the house",
+                        "type": "string"
+                    },
+                    "address": {
+                        "description": "Address of the house",
+                        "type": "string"
+                    },
+                    "price_per_night": {
+                        "description": "Price per night for renting the house",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "bedrooms": {
+                        "description": "Number of bedrooms in the house",
+                        "type": "integer"
+                    },
+                    "bathrooms": {
+                        "description": "Number of bathrooms in the house",
+                        "type": "integer"
+                    },
+                    "photos": {
+                        "description": "Photos of the house",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/HousePhoto"
+                        }
+                    },
+                    "bookings": {
+                        "description": "Bookings of the house",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Booking"
+                        }
+                    },
+                    "owner": {
+                        "$ref": "#/components/schemas/User"
+                    }
+                },
+                "type": "object"
+            },
+            "HousePhoto": {
+                "title": "HousePhoto",
+                "description": "HousePhoto model for handling photos of houses in the system",
+                "properties": {
+                    "id": {
+                        "description": "Unique identifier of the house photo",
+                        "type": "integer"
+                    },
+                    "filename": {
+                        "description": "Filename of the photo",
+                        "type": "string"
+                    },
+                    "house": {
+                        "$ref": "#/components/schemas/House"
+                    }
+                },
+                "type": "object"
+            },
+            "Permission": {
+                "title": "Permission",
+                "description": "Permission model for handling permissions in the system",
+                "properties": {
+                    "id": {
+                        "description": "Unique identifier of the permission",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Name of the permission",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Description of the permission",
+                        "type": "string"
+                    },
+                    "roles": {
+                        "description": "Roles that have this permission",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Role"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Role": {
+                "title": "Role",
+                "description": "Role model for handling user roles in the system",
+                "properties": {
+                    "id": {
+                        "description": "Unique identifier of the role",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Name of the role",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Description of the role",
+                        "type": "string"
+                    },
+                    "users": {
+                        "description": "Users who have this role",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    "permissions": {
+                        "description": "Permissions associated with this role",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Permission"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "description": "User model for handling users in the system",
+                "properties": {
+                    "id": {
+                        "description": "Unique identifier of the user",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "Name of the user",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Email address of the user",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "email_verified_at": {
+                        "description": "Timestamp when the email was verified",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "bookings": {
+                        "description": "List of bookings made by the user",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Booking"
+                        }
+                    },
+                    "roles": {
+                        "description": "Roles assigned to the user",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Role"
+                        }
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Bookings",
+            "description": "API Endpoints of Bookings"
+        },
+        {
+            "name": "Houses",
+            "description": "API Endpoints for Houses"
+        },
+        {
+            "name": "HousePhotos",
+            "description": "API Endpoints for House Photos"
+        }
+    ]
+}

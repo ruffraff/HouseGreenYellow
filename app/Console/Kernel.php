@@ -2,8 +2,10 @@
 
 namespace App\Console;
 
+use App\Jobs\NotificationJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Notifications\Notification;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,6 +17,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->job(new NotificationJob())->everyMinute();
         // $schedule->command('inspire')->hourly();
     }
 
