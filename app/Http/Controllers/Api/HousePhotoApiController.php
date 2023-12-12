@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\HousePhoto;
 use App\Models\House;
 use Illuminate\Http\Request;
-
+use OpenApi\Annotations as OA;
 /**
  * Class HousePhotoApiController
  * 

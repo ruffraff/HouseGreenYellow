@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\House;
 use Illuminate\Support\Facades\Validator;
+use OpenApi\Annotations as OA;
 /**
  * Class HouseApiController
  * 

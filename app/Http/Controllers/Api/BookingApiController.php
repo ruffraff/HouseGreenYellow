@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Services\BookingService;
+use OpenApi\Annotations as OA;
 
 /**
  * Class BookingApiController

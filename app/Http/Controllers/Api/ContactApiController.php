@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\Contact; 
 use App\Http\Controllers\Controller;
-
+use OpenApi\Annotations as OA;
 /**
  * @OA\Info(
  *     title="Contact API",
