@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "8024:8024"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: Occihc72?
+      MYSQL_DATABASE: housegreenyellow
+      MYSQL_USER: rruffolo
+      MYSQL_PASSWORD: Occihc72?
+    ports:
+      - "3307:3306"
