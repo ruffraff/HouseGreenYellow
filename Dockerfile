@@ -16,6 +16,7 @@ RUN apt-get update && \
                        php8.0-mbstring \
                        php8.0-zip \
                        php8.0-curl \
+                       php8.0-mysql \
                        curl
 
 # Install Composer globally
