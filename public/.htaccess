@@ -5,6 +5,10 @@
 
     RewriteEngine On
 
+    # Reindirizza da /index.php a /
+    RewriteCond %{THE_REQUEST} ^GET\ /index\.php [NC]
+    RewriteRule ^index\.php$ / [R=301,L,NE]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
