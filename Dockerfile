@@ -28,13 +28,6 @@ RUN git clone https://github.com/ruffraff/HouseGreenYellow.git /var/www/html/hou
 # Set the working directory
 WORKDIR /var/www/html/house-green-yellow
 
-# Install Laravel dependencies
-# Use the --no-scripts flag to prevent the execution of scripts defined in composer.json
-RUN composer install --no-scripts
-
-# Genera la chiave dell'applicazione
-RUN php artisan key:generate
-
 # Set the correct permissions for the Laravel project
 RUN chown -R www-data:www-data /var/www/html/house-green-yellow
 
