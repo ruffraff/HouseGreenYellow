@@ -5,9 +5,9 @@
 
     RewriteEngine On
 
-    # Reindirizza da /index.php a /
-    RewriteCond %{THE_REQUEST} ^GET\ /index\.php [NC]
-    RewriteRule ^index\.php$ / [R=301,L,NE]
+    # Rimuovi "index.php" dall'URL se presente
+RewriteCond %{THE_REQUEST} \s/index\.php/([^\s]+) [NC]
+RewriteRule ^ /%1 [R=301,L,NE]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
